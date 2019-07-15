@@ -1,3 +1,2 @@
 # LaravelShoppingBasket
-composer update
-php artisan migrate 
+composer update php artisan migrate 
