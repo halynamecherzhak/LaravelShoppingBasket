@@ -19,6 +19,5 @@ Route::get('addToCart/{id}', 'CartController@addToCart');
 
 Route::get('deleteFromCart/{id}', 'CartController@deleteFromCart');
 
-Auth::routes();
+Route::get('/logout', 'UserController@getLogout');
 
-Route::get('/home', 'HomeController@index')->name('home');

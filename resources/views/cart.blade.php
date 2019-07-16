@@ -18,7 +18,6 @@
 
         <?php $total = 0 ?>
 
-        @if(session('cart'))
             @foreach(session('cart') as $id => $details)
 
                 <?php $total += $details['price'] * $details['quantity'] ?>
@@ -44,7 +43,6 @@
                     </td>
                 </tr>
             @endforeach
-        @endif
 
         </tbody>
 
