@@ -19,5 +19,7 @@ Route::get('addToCart/{id}', 'CartController@addToCart');
 
 Route::get('deleteFromCart/{id}', 'CartController@deleteFromCart');
 
+Route::POST('updateProducts/{id}', 'CartController@updateCartProduct' )->name('update');
+
 Route::get('/logout', 'UserController@getLogout');
 

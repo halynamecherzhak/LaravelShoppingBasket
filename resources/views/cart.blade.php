@@ -14,37 +14,45 @@
             <th style="width:10%"></th>
         </tr>
         </thead>
+
         <tbody>
 
         <?php $total = 0 ?>
 
-            @foreach(session('cart') as $id => $details)
+        @foreach($cartItems as $details)
 
-                <?php $total += $details['price'] * $details['quantity'] ?>
+        <?php $total += $details->price * $details->amount ?>
 
-                <tr>
-                    <td data-th="Product">
-                        <div class="row">
-                            <div class="col-sm-3 hidden-xs"><img src="{{ $details['photo'] }}" width="100" height="100" class="img-responsive"/></div>
-                            <div class="col-sm-9">
-                                <h4 class="nomargin">{{ $details['name'] }}</h4>
-                            </div>
+            <tr>
+                <td data-th="Product">
+                    <div class="row">
+                        <div class="col-sm-3 hidden-xs"><img src="{{ $details->photo }}" width="100" height="100" class="img-responsive"/></div>
+                        <div class="col-sm-9">
+                            <h4 class="nomargin">{{ $details->name }}</h4>
                         </div>
-                    </td>
-                    <td data-th="Price">${{ $details['price'] }}</td>
-                    <td data-th="Quantity">
-                        <input type="number" value="{{ $details['quantity'] }}" class="form-control quantity" />
-                    </td>
-                    <td data-th="Subtotal" class="text-center">${{ $details['price'] * $details['quantity'] }}</td>
-                    <td class="actions" data-th="">
-                        <button class="btn btn-info btn-sm update-cart" data-id="{{ $id }}"><i class="fa fa-refresh"></i></button>
-                        {{--<button class="btn btn-danger btn-sm remove-from-cart" data-id="{{ $id }}"><i class="fa fa-trash-o"></i></button>--}}
-                        <a href="{{ url('deleteFromCart/'.$id) }}"><button class="btn btn-danger btn-sm remove-from-cart"><i class="fa fa-trash-o"></i></button></a>
-                    </td>
-                </tr>
+                    </div>
+                </td>
+
+                <form action="{{ route('update', ['id' => $details->id]) }}" method="POST">
+                    @csrf
+
+                <td data-th="Price">${{ $details->price }}</td>
+                <td data-th="Quantity">
+                    <input type="number" value="{{ $details->amount }}" class="form-control quantity" name="amount" />
+                </td>
+                <td data-th="Subtotal" class="text-center">${{ $details->price * $details->amount }}</td>
+                <td class="actions" data-th="">
+                    <button class="btn btn-info btn-sm update-cart"><i class="fa fa-refresh"></i></button>
+                </td>
+            </form>
+
+                <td class="actions" data-th="">
+                    <a href="{{ url('deleteFromCart/'.$details->id) }}"><button class="btn btn-danger btn-sm remove-from-cart"><i class="fa fa-trash-o"></i></button></a>
+                </td>
+            </tr>
             @endforeach
 
-        </tbody>
+            </tbody>
 
         <tfoot>
         <tr>

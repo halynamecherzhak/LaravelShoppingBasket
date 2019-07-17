@@ -21,9 +21,10 @@
     <div class="row">
         <div class="col-lg-12 col-sm-12 col-12 main-section">
             <a href="/cart">
-                {{--<button type="button" class="btn btn-info" >--}}
+                <button type="button" class="btn btn-info" >
                     {{--<i class="fa fa-shopping-cart" ></i> Cart <span class="badge badge-pill badge-danger">{{ count(session('cart')) }}</span>--}}
-                {{--</button>--}}
+                    <i class="fa fa-shopping-cart" ></i> Cart <span class="badge badge-pill badge-danger"></span>
+                </button>
             </a>
         </div>
     </div>
